@@ -7,7 +7,7 @@
  */
 
 import React, {Component} from 'react';
-import { StyleSheet, View, Text, TextInput, TouchableOpacity, StatusBar } from 'react-native';
+import { StyleSheet, View, Text, StatusBar } from 'react-native';
 
 import Colors from '../assets/colors';
 
@@ -15,7 +15,6 @@ import Brand_logo from '../assets/images/fullrate/brand_logo';
 
 import Number from './LoginNumber';
 import SMS from './LoginSMS';
-import Next_svg from "../assets/icons/fullrate/next";
 
 type Props = {};
 export default class Login extends Component<Props> {
@@ -31,25 +30,19 @@ export default class Login extends Component<Props> {
         header: null ,
     };
 
-    state = {
-        loggedIn: false
-    };
-
-    attempt = () => {
-        this.setState({
-            loggedIn: !this.state.loggedIn
-        })
-    };
+    // state = {
+    //     authenticated: false
+    // };
+    //
+    // attempt = () => {
+    //     this.setState({
+    //         authenticated: !this.state.authenticated
+    //     })
+    // };
 
     render() {
 
-        //const myView = true ? <Number /> : <SMS />;
-
-        // const myView = if (true) {
-        //     myView = <Number />
-        // } else {
-        //     myView = <SMS />
-        // }
+        const submitView = this.state.authenticated ? <SMS /> : <Number />;
 
         return (
             <View>
@@ -69,7 +62,7 @@ export default class Login extends Component<Props> {
                     </View>
                 </View>
 
-                {myView}
+                {submitView}
 
             </View>
         );
@@ -91,7 +84,11 @@ const styles = StyleSheet.create({
         alignSelf: 'center',
     },
     BtnForward: {
+        height: 200,
+        width: 600,
         alignSelf: 'center',
+        justifyContent: 'center',
+        backgroundColor: 'red',
     },
 });
 //#endregion StyleSheet

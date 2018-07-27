@@ -11,6 +11,7 @@ import { StyleSheet, View, Text, TextInput, TouchableOpacity } from 'react-nativ
 
 
 import Next_svg from '../assets/icons/fullrate/next';
+import Colors from "../assets/colors";
 
 type Props = {};
 export default class LoginNumber extends Component<Props> {
@@ -18,16 +19,16 @@ export default class LoginNumber extends Component<Props> {
     // constructor
     constructor(props) {
         super(props);
-        this.state = {text: ''};
+        this.state = {};
     }
 
     state = {
-        loggedIn: false
+        authenticated: false
     };
 
     attempt = () => {
         this.setState({
-            loggedIn: !this.state.loggedIn
+            authenticated: !this.state.authenticated
         })
     };
 
@@ -38,7 +39,9 @@ export default class LoginNumber extends Component<Props> {
                 {/* comment */}
                 <View style={{padding: 10}}>
                     <TextInput
-                        style={{height: 40}}
+                        //style={{height: 40}}
+                        style={styles.input}
+                        placeholder="+45 Hovednummer"
                         onChangeText={(text) => this.setState({text})}
                     />
                 </View>
@@ -54,7 +57,7 @@ export default class LoginNumber extends Component<Props> {
                 </TouchableOpacity>
 
                 {/* comment */}
-                <Text style={{padding: 25.0, alignSelf: 'center'}}>
+                <Text style={[{padding: 25.0, alignSelf: 'center'}, {color: (this.state.authenticated ? 'green' : 'red')}]}>
                     This is the Login-screen #1 -> LoginNumber.js
                 </Text>
 
@@ -65,7 +68,18 @@ export default class LoginNumber extends Component<Props> {
 
 //#region StyleSheet
 const styles = StyleSheet.create({
+    input: {
+        width: 246,
+        height: 46,
+        marginTop: 107,
+        alignSelf: 'center',
+        color: Colors.primary_dark,
+        fontSize: 20,
+        borderBottomColor: Colors.primary_dark,
+        borderBottomWidth: 2
+    },
     BtnForward: {
+        marginTop: 80,
         alignSelf: 'center',
     },
 });
